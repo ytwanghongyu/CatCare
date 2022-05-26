@@ -12,6 +12,10 @@ public class MODE1E extends AppCompatActivity {
     private Button ShitButtonE;
     private int devfd = -1;
     public static MODE1E instance = null;
+
+    String feed_str = "1";
+    String clean_str = "2";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +36,6 @@ public class MODE1E extends AppCompatActivity {
         if( MODE1.instance!=null){
             MODE1.instance.finish();
         }
-        if( MODE1E.instance!=null){
-            MODE1E.instance.finish();
-        }
         if( MODE2.instance!=null){
             MODE2.instance.finish();
         }
@@ -48,8 +49,12 @@ public class MODE1E extends AppCompatActivity {
             public void onClick(View view) {
                 //串口发送‘1’，表示喂食
                 //编码见   上位机toMCU_通信格式编码.pdf
-                String str = "1";
-                com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
+                String str = feed_str;
+                //补换行符\n
+                if (str.charAt(str.length()-1) != '\n') {
+                    str = str + "\n";
+                }
+                HardwareControler.write(devfd, str.getBytes());
 
             }
         });
@@ -61,9 +66,12 @@ public class MODE1E extends AppCompatActivity {
             public void onClick(View view) {
                 //串口发送‘2’，表示铲屎
                 //编码见   上位机toMCU_通信格式编码.pdf
-                String str = "2";
-                com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
-
+                String str = clean_str;
+                //补换行符\n
+                if (str.charAt(str.length()-1) != '\n') {
+                    str = str + "\n";
+                }
+                HardwareControler.write(devfd, str.getBytes());
             }
         });
 

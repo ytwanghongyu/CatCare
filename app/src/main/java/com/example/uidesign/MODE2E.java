@@ -45,9 +45,6 @@ public class MODE2E extends AppCompatActivity {
         if( MODE2.instance!=null){
             MODE2.instance.finish();
         }
-        if( MODE2E.instance!=null){
-            MODE2E.instance.finish();
-        }
 
         DistanceButtonE      =findViewById(R.id.distance_btn_e);
         DistanceSoundButtonE =findViewById(R.id.distance_sound_btn_e);

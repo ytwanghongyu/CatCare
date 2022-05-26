@@ -50,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //关闭其他页面
-        if(MainActivity.instance!=null){
-            MainActivity.instance.finish();
-        }
         if(MainActivity2.instance!=null){
             MainActivity2.instance.finish();
         }

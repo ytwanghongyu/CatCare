@@ -54,55 +54,70 @@
 
 
         <Button
-            android:id="@+id/servo_btn_1"
+            android:id="@+id/servo_btn"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-
-
-            android:layout_below="@+id/distance_sound_btn"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="80dp"
-            android:layout_toRightOf="@+id/servo_btn_2"
-
-
+            android:layout_marginTop="210dp"
+            android:layout_toRightOf="@+id/color_btn"
             android:background="#ffb87e"
-            android:text="舵机1测试"
+            android:text="舵机测试"
             android:textSize="50sp" />
 
-        <Button
-            android:id="@+id/servo_btn_2"
+        <TextView
+            android:id="@+id/distance_txt"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/distance_btn"
+            android:layout_marginLeft="200dp"
+            android:background="#CCCCCC"
+            android:hint="dis(mm)"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/color_txt"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/color_btn"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="80dp"
-            android:background="#ffb87e"
-            android:text="舵机2测试"
-            android:textSize="50sp" />
+            android:layout_marginLeft="-400dp"
+            android:layout_toRightOf="@+id/color_btn"
+            android:background="#CCCCCC"
+            android:hint="R:0|G:0|B:0"
+            android:textSize="40sp" />
 
-
-        <Button
-            android:id="@+id/slipway_btn_1"
+        <TextView
+            android:id="@+id/distance_sound_txt"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/servo_btn_1"
-            android:layout_marginLeft="-400dp"
-            android:layout_marginTop="80dp"
-            android:layout_toRightOf="@+id/servo_btn_1"
-            android:background="#ffb87e"
-            android:text="滑台测试1"
-            android:textSize="50sp" />
+            android:layout_below="@+id/distance_sound_btn"
+            android:layout_marginLeft="700dp"
+            android:background="#CCCCCC"
+            android:hint="dis(mm)"
+            android:textSize="40sp" />
+
 
         <Button
             android:id="@+id/slipway_btn_2"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/servo_btn"
+            android:layout_marginLeft="-400dp"
+            android:layout_marginTop="80dp"
+            android:layout_toRightOf="@+id/servo_btn"
+            android:background="#ffb87e"
+            android:text="滑台测试2"
+            android:textSize="50sp" />
 
-            android:layout_below="@+id/servo_btn_2"
+        <Button
+            android:id="@+id/slipway_btn_1"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/servo_btn"
             android:layout_marginLeft="200dp"
             android:layout_marginTop="80dp"
             android:background="#ffb87e"
-            android:text="滑台测试2"
+            android:text="滑台测试1"
             android:textSize="50sp" />
 
 

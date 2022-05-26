@@ -16,7 +16,7 @@
         android:textSize="60dp" />
 
     <EditText
-        android:id="@+id/ed_1"
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginLeft="100dp"
@@ -27,24 +27,23 @@
         android:textSize="50dp" />
 
     <EditText
-        android:id="@+id/ed_2"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="300dp"
         android:layout_marginRight="100dp"
+        android:drawablePadding="5dp"
         android:hint="密码:"
         android:inputType="textPassword"
-        android:textSize="50dp"
 
-        android:drawablePadding="5dp"
-        />
+        android:textSize="50dp" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ed_2"
+        android:layout_below="@+id/password"
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
         android:background="#ffb87e"

@@ -3,10 +3,16 @@ package com.example.uidesign;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.friendlyarm.FriendlyThings.HardwareControler;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MODE1 extends AppCompatActivity {
@@ -15,6 +21,11 @@ public class MODE1 extends AppCompatActivity {
     private Button ShitButton;
     private int devfd = -1;
     public static MODE1 instance = null;
+
+    String feed_str = "1\n";
+    String clean_str = "2\n";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +45,6 @@ public class MODE1 extends AppCompatActivity {
         if( LOGINE.instance!=null){
             LOGINE.instance.finish();
         }
-        if( MODE1.instance!=null){
-            MODE1.instance.finish();
-        }
         if( MODE1E.instance!=null){
             MODE1E.instance.finish();
         }
@@ -53,13 +61,12 @@ public class MODE1 extends AppCompatActivity {
             public void onClick(View view) {
                 //串口发送‘1’，表示喂食
                 //编码见   上位机toMCU_通信格式编码.pdf
-                String str = "1";
+                String str = feed_str;
+                //补换行符\n
+                if (str.charAt(str.length()-1) != '\n') {
+                    str = str + "\n";
+                }
                 HardwareControler.write(devfd, str.getBytes());
-                str = "\r";
-                HardwareControler.write(devfd, str.getBytes());
-                str = "\n";
-                HardwareControler.write(devfd, str.getBytes());
-
             }
         });
 
@@ -70,9 +77,12 @@ public class MODE1 extends AppCompatActivity {
             public void onClick(View view) {
                 //串口发送‘2’，表示铲屎
                 //编码见   上位机toMCU_通信格式编码.pdf
-                String str = "2";
+                String str = clean_str;
+                //补换行符\n
+                if (str.charAt(str.length()-1) != '\n') {
+                    str = str + "\n";
+                }
                 HardwareControler.write(devfd, str.getBytes());
-
             }
         });
     }

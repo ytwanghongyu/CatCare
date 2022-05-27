@@ -3,23 +3,41 @@ package com.example.uidesign;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import com.friendlyarm.FriendlyThings.HardwareControler;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MODE1E extends AppCompatActivity {
     private Button FeedButtonE;
     private Button ShitButtonE;
-    private int devfd = -1;
+        //串口初始化参数（不能改
+        private String devName = "/dev/ttyAMA3";//ttyAMA3 UART3
+        private int speed = 115200;//波特率
+        private int dataBits = 8;
+        private int stopBits = 1;
+        private int devfd = -1;
     public static MODE1E instance = null;
 
-    String feed_str = "1";
-    String clean_str = "2";
+
+    String feed_str = "1\n";
+    String clean_str = "2\n";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode1_e);
+
+        FeedButtonE = (Button) findViewById(R.id.feed_btn_e);
+        ShitButtonE = (Button) findViewById(R.id.shit_btn_e);
+
+
         //关闭其他页面
         if(MainActivity.instance!=null){
             MainActivity.instance.finish();
@@ -43,39 +61,33 @@ public class MODE1E extends AppCompatActivity {
             MODE2E.instance.finish();
         }
         //喂食按钮触发函数
-        FeedButtonE = findViewById(R.id.feed_btn_e);
         FeedButtonE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //串口发送‘1’，表示喂食
-                //编码见   上位机toMCU_通信格式编码.pdf
-                String str = feed_str;
-                //补换行符\n
-                if (str.charAt(str.length()-1) != '\n') {
-                    str = str + "\n";
+                //开启串口
+                if(devfd == -1){
+                    devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
                 }
-                HardwareControler.write(devfd, str.getBytes());
-
+                //发送数据
+                String str = feed_str;
+                //串口发送
+                com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
         });
 
         //铲屎按钮触发函数
-        ShitButtonE = findViewById(R.id.shit_btn_e);
         ShitButtonE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //串口发送‘2’，表示铲屎
-                //编码见   上位机toMCU_通信格式编码.pdf
-                String str = clean_str;
-                //补换行符\n
-                if (str.charAt(str.length()-1) != '\n') {
-                    str = str + "\n";
+                //开启串口
+                if(devfd == -1){
+                    devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
                 }
-                HardwareControler.write(devfd, str.getBytes());
+                //发送数据
+                String str = clean_str;
+                //串口发送
+                com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
         });
-
-
-
     }
 }

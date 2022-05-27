@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="管理员登录"
-        android:textSize="60dp" />
+        android:text="@string/Administrator_login"
+        android:textSize="60sp" />
 
     <EditText
         android:id="@+id/username"
@@ -23,8 +23,8 @@
         android:layout_marginTop="200dp"
         android:layout_marginRight="100dp"
 
-        android:hint="账号:"
-        android:textSize="50dp" />
+        android:hint="@string/Username"
+        android:textSize="50sp" />
 
     <EditText
         android:id="@+id/password"
@@ -34,10 +34,10 @@
         android:layout_marginTop="300dp"
         android:layout_marginRight="100dp"
         android:drawablePadding="5dp"
-        android:hint="密码:"
+        android:hint="@string/Password"
         android:inputType="textPassword"
 
-        android:textSize="50dp" />
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/login"
@@ -47,7 +47,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
         android:background="#ffb87e"
-        android:text="安全登录"
-        android:textSize="40dp" />
+        android:text="@string/SafelyLogin"
+        android:textSize="40sp" />
 
 </RelativeLayout>

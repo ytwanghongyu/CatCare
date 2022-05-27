@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CatCare</string>
+    <string name="Administrator_login">Administrator Login</string>
+    <string name="Username">Username:</string>
+    <string name="Password">Password:</string>
+    <string name="SafelyLogin">Log in</string>
+    <string name="LanguageSwitch">中文</string>
+    <string name="ModeChoose">Choose Mode</string>
+    <string name="UserMode">User Mode</string>
+    <string name="MaintainMode">Maintenance Mode</string>
+    <string name="UserModeTitle">UserMode</string>
+    <string name="FeedCat">Feed the Cat</string>
+    <string name="CleanTheLitter">Clean the Litter</string>
+    <string name="MaintainModeTitle">Maintenance Mode</string>
+    <string name="LaserDistanceSensorTest">LaserDistanceSensorTest</string>
+    <string name="UltrasonicSensorTest">UltrasonicSensorTest</string>
+    <string name="RGBColorSensorTest">RGBColorSensorTest</string>
+    <string name="ServoTest">ServoTest</string>
+    <string name="DistanceValue">Distance(mm)</string>
+    <string name="RGBValue">R ,G ,B (0_255)</string>
+    <string name="MarginValue">Margin(%)</string>
+    <string name="SlipWayTest2">SlipWayTest2</string>
+    <string name="SlipWayTest1">SlipWayTest1</string>
+    <string name="SuccessfullyLogin">Successfully Login!</string>
+    <string name="FailedLogin">Failed Login</string>
+</resources>

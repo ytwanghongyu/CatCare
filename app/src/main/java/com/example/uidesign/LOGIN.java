@@ -1,7 +1,10 @@
 package com.example.uidesign;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.res.Configuration;
+import android.util.DisplayMetrics;
 
+import java.util.Locale;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +47,9 @@ public class LOGIN extends AppCompatActivity {
 
         name = findViewById(R.id.username);         //获取输入的账号
         passwd = findViewById(R.id.password);     //获取输入的密码
+
+        String SuccessfullyLogin = (String) getResources().getText(R.string.SuccessfullyLogin);
+        String FailedLogin = (String) getResources().getText(R.string.FailedLogin);
         login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -57,12 +63,12 @@ public class LOGIN extends AppCompatActivity {
 
                 //进行判断，如果两个内容都相等，就显现第一条语句，反之，第二条。
                 if(user.equals(Usename) & pwd.equals(Upwd)){
-                    Toast.makeText(LOGIN.this, "登录成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LOGIN.this,SuccessfullyLogin , Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LOGIN.this, MODE2.class);
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(LOGIN.this, "身份验证错误，禁止访问", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LOGIN.this, FailedLogin, Toast.LENGTH_SHORT).show();
                 }
             }
         });

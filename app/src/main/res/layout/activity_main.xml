@@ -13,16 +13,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#ffb87e"
-        android:text="ENGLISH"
-        android:textSize="40dp" />
+        android:text="@string/LanguageSwitch"
+        android:textSize="40sp" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
-        android:text="模式选择"
-        android:textSize="60dp"
+        android:text="@string/ModeChoose"
+        android:textSize="60sp"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,8 +33,8 @@
             android:layout_width="500dp"
             android:layout_height="250dp"
             android:background="#95d5ff"
-            android:text="操作模式"
-            android:textSize="80dp"
+            android:text="@string/UserMode"
+            android:textSize="80sp"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="120dp" />
 
@@ -45,8 +45,8 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="60dp"
             android:background="#95d5ff"
-            android:text="维护模式"
-            android:textSize="80dp" />
+            android:text="@string/MaintainMode"
+            android:textSize="80sp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="操作模式"
+        android:text="@string/UserModeTitle"
         android:textSize="120sp"
         android:background="#8FB8FF"/>
 
@@ -26,7 +26,7 @@
         android:layout_marginTop="80dp"
 
         android:background="#ffb87e"
-        android:text="喂猫粮"
+        android:text="@string/FeedCat"
         android:textAllCaps="false"
         android:textSize="80sp" />
 
@@ -39,7 +39,7 @@
         android:layout_marginTop="50dp"
         android:background="#ffb87e"
         android:layout_gravity="center"
-        android:text="清猫砂"
+        android:text="@string/CleanTheLitter"
         android:textAllCaps="false"
         android:textSize="80sp"/>
 

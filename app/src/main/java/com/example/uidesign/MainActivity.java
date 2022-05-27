@@ -2,7 +2,10 @@
 package com.example.uidesign;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.res.Configuration;
+import android.util.DisplayMetrics;
 
+import java.util.Locale;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -43,6 +46,24 @@ public class MainActivity extends AppCompatActivity {
     private int devfd = -1;
 
     public static MainActivity instance = null;
+
+
+        public static void set(boolean isEnglish) {
+
+            Configuration configuration = MainActivity.instance.getResources().getConfiguration();
+            DisplayMetrics displayMetrics = MainActivity.instance.getResources().getDisplayMetrics();
+            if (isEnglish) {
+                //设置英文
+                configuration.locale = Locale.ENGLISH;
+            } else {
+                //设置中文
+                configuration.locale = Locale.SIMPLIFIED_CHINESE;
+            }
+            //更新配置
+            MainActivity.instance.getResources().updateConfiguration(configuration, displayMetrics);
+        }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,17 +95,13 @@ public class MainActivity extends AppCompatActivity {
         
 
         
-        //打开串口
-        //*必须在第一个界面打开，否则容易出错
-        devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
 
         //切换语言BUTTON 跳转 MainActivity2
         language1=findViewById(R.id.language1);
         language1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                startActivity(intent);
+                LanguageSwitch.set(true);
             }
         });
 

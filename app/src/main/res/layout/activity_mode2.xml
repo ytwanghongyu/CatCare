@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="维护模式"
+        android:text="@string/MaintainModeTitle"
         android:textSize="100sp"
         android:background="#8fa7ff"/>
     <RelativeLayout
@@ -27,7 +27,7 @@
             android:layout_marginLeft="200dp"
             android:layout_marginTop="65dp"
             android:background="#8BC34A"
-            android:text="距离传感器测试"
+            android:text="@string/LaserDistanceSensorTest"
             android:textSize="50sp" />
 
         <Button
@@ -38,7 +38,7 @@
             android:layout_marginTop="65dp"
             android:layout_toRightOf="@+id/distance_btn"
             android:background="#8BC34A"
-            android:text="超声波传感器测试"
+            android:text="@string/UltrasonicSensorTest"
             android:textSize="50sp" />
 
         <Button
@@ -49,7 +49,7 @@
             android:layout_marginLeft="200dp"
             android:layout_marginTop="80dp"
             android:background="#8BC34A"
-            android:text="颜色传感器测试"
+            android:text="@string/RGBColorSensorTest"
             android:textSize="50sp" />
 
 
@@ -61,7 +61,7 @@
             android:layout_marginTop="210dp"
             android:layout_toRightOf="@+id/color_btn"
             android:background="#ffb87e"
-            android:text="舵机测试"
+            android:text="@string/ServoTest"
             android:textSize="50sp" />
 
         <TextView
@@ -71,7 +71,7 @@
             android:layout_below="@+id/distance_btn"
             android:layout_marginLeft="200dp"
             android:background="#CCCCCC"
-            android:hint=" 距离(mm)"
+            android:hint="@string/DistanceValue"
             android:textSize="40sp" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:layout_marginLeft="-400dp"
             android:layout_toRightOf="@+id/color_btn"
             android:background="#CCCCCC"
-            android:hint=" R ,G ,B (0-255)"
+            android:hint="@string/RGBValue"
             android:textSize="40sp" />
 
         <TextView
@@ -92,7 +92,7 @@
             android:layout_below="@+id/soundwave_btn"
             android:layout_marginLeft="700dp"
             android:background="#CCCCCC"
-            android:hint=" 余量(%)"
+            android:hint="@string/MarginValue"
             android:textSize="40sp" />
 
 
@@ -105,7 +105,7 @@
             android:layout_marginTop="80dp"
             android:layout_toRightOf="@+id/servo_btn"
             android:background="#ffb87e"
-            android:text="滑台测试2"
+            android:text="@string/SlipWayTest2"
             android:textSize="50sp" />
 
         <Button
@@ -117,7 +117,7 @@
             android:layout_marginLeft="200dp"
             android:layout_marginTop="80dp"
             android:background="#ffb87e"
-            android:text="滑台测试1"
+            android:text="@string/SlipWayTest1"
             android:textSize="50sp" />
 
 

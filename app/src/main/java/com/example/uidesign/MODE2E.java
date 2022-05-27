@@ -240,8 +240,8 @@ public class MODE2E extends AppCompatActivity {
         devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
 
         DistanceButton      =findViewById(R.id.distance_btn_e   );
-        SoundWaveButton     =findViewById(R.id.soundwave_btn_e  );
         ColorButton         =findViewById(R.id.color_btn_e      );
+        SoundWaveButton     =findViewById(R.id.soundwave_btn_e  );
         ServoButton         =findViewById(R.id.servo_btn_e      );
         SlipWayButton1      =findViewById(R.id.slipway_btn_1_e  );
         SlipWayButton2      =findViewById(R.id.slipway_btn_2_e  );
@@ -267,22 +267,6 @@ public class MODE2E extends AppCompatActivity {
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
         });
-        //超声波传感器按钮
-        SoundWaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //开启串口
-                if(devfd == -1){
-                    devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
-                }
-                //设置状态
-                state = 5;
-                //发送数据
-                String str = SoundWaveSendStr;
-                //串口发送
-                com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
-            }
-        });
         //颜色传感器按钮
         ColorButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -295,6 +279,22 @@ public class MODE2E extends AppCompatActivity {
                 state = 4;
                 //发送数据
                 String str = ColorSendStr;
+                //串口发送
+                com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
+            }
+        });
+        //超声波传感器按钮
+        SoundWaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //开启串口
+                if(devfd == -1){
+                    devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+                }
+                //设置状态
+                state = 5;
+                //发送数据
+                String str = SoundWaveSendStr;
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }

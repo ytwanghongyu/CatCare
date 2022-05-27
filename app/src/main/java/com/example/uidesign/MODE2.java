@@ -17,28 +17,35 @@ import java.util.TimerTask;
 
 
 public class MODE2 extends AppCompatActivity {
-    private Button DistanceButton       ;
-    private Button ColorButton          ;
-    private Button SoundWaveButton     ;
-    private Button ServoButton         ;
-    private Button SlipWayButton1        ;
-    private Button SlipWayButton2        ;
-    private TextView DistanceText;
-    private TextView ColorText;
-    private TextView SoundWaveText;
+    private Button DistanceButton   ;
+    private Button ColorButton      ;
+    private Button SoundWaveButton  ;
+    private Button ServoButton      ;
+    private Button SlipWayButton1   ;
+    private Button SlipWayButton2   ;
+    private TextView DistanceText   ;
+    private TextView ColorText      ;   
+    private TextView SoundWaveText  ;
 
-
-    private int devfd = -1;
+    //串口初始化参数
+    private String devName = "/dev/ttyAMA3";//串口地址 ttyAMA3 UART3
+    private int speed = 115200  ;//波特率
+    private int dataBits = 8    ;//数据位
+    private int stopBits = 1    ;//停止位
+    private int devfd = -1      ;//串口句柄
+    
     public static MODE2 instance = null;
 
-    private  int state = 0;
+    
+    private  int state = 0;//待机状态
 
+    //串口发送的字符串
     String  DistanceSendStr     = "3\n";//距离传感器测试发送的字符串
     String  ColorSendStr        = "4\n";//颜色传感器测试发送的字符串
     String  SoundWaveSendStr    = "5\n";//超声波传感器测试发送的字符串
     String  ServoSendStr        = "6\n";//舵机测试发送的字符串
-    String  SlidWaySendStr1     = "7\n";//滑台1测试发送的字符串
-    String  SlidWaySendStr2     = "8\n";//滑台2测试发送的字符串
+    String  SlipWaySendStr1     = "7\n";//滑台1测试发送的字符串
+    String  SlipWaySendStr2     = "8\n";//滑台2测试发送的字符串
 
     private final int BUFSIZE = 512;
     private byte[] buf = new byte[BUFSIZE];
@@ -61,10 +68,11 @@ public class MODE2 extends AppCompatActivity {
                         if (retSize > 0) {
                             String str1 = new String(buf, 0, retSize);
                             
-                            //距离传感器收处理
+                            //待机状态
                             if(state == 0){
                                 break;
                             }
+                            //距离传感器收处理
                             else if (state == 3){
                                 //获取字符串
                                 String str_get = new String(buf, 0, retSize);
@@ -87,8 +95,9 @@ public class MODE2 extends AppCompatActivity {
                                     //设置距离
                                     DistanceText.setText("获取距离失败");
                                 }
-                                //状态复位
+                                //设置状态
                                 state = 0;
+                                break;
                             }
                             //颜色传感器收处理 
                             else if (state == 4){
@@ -119,10 +128,11 @@ public class MODE2 extends AppCompatActivity {
                                 }
                                 else{
                                     //设置颜色
-                                    ColorText.setText("获取颜色失败");
+                                    ColorText.setText("获取RGB失败");
                                 }
                                 //状态复位
                                 state = 0;
+                                break;
                             }
                             //超声波传感器收处理，the same as距离传感器收处理，but "mm" is changed to "%"
                             else if (state == 5){
@@ -151,11 +161,12 @@ public class MODE2 extends AppCompatActivity {
                                     SoundWaveText.setText(str_distance);
                                 }
                                 else{
-                                    //设置距离
-                                    SoundWaveText.setText("获取距离失败");
+                                    //设置%
+                                    SoundWaveText.setText("获取失败");
                                 }
                                 //状态复位
                                 state = 0;
+                                 break;
                             }
 
                         }
@@ -165,6 +176,38 @@ public class MODE2 extends AppCompatActivity {
             super.handleMessage(msg); // 帮助处理信息的一个类
         }
     };
+
+    //生命周期onDestroy
+    public void onDestroy(){
+        timer.cancel();
+        if (devfd!= -1){
+            //关闭串口
+            HardwareControler.close(devfd);
+            devfd = -1;
+        }
+        super.onDestroy();
+    }
+    //生命周期onPause the same as onDestroy
+    public void onPause(){
+        if (devfd!= -1){
+            //关闭串口
+            HardwareControler.close(devfd);
+            devfd = -1;
+        }
+        super.onPause();
+    }
+    //生命周期onStop the same as onDestroy
+    public void onStop(){
+        if (devfd!= -1){
+            //关闭串口
+            HardwareControler.close(devfd);
+            devfd = -1;
+        }
+        super.onStop();
+    }
+
+
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +235,11 @@ public class MODE2 extends AppCompatActivity {
         if( MODE2E.instance!=null){
             MODE2E.instance.finish();
         }
+
+        //打开串口
+        devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+
+
         DistanceButton      =findViewById(R.id.distance_btn );
         SoundWaveButton     =findViewById(R.id.soundwave_btn);
         ColorButton         =findViewById(R.id.color_btn    );
@@ -202,14 +250,21 @@ public class MODE2 extends AppCompatActivity {
         ColorText           =findViewById(R.id.color_txt    );
         SoundWaveText       =findViewById(R.id.soundwave_txt);
 
+        //按钮点击事件
+
         //距离传感器测试 按钮触发函数
         DistanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //开启串口
+                if(devfd == -1){
+                    devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+                }
+                //设置状态
                 state = 3;
-                //串口发送‘3’
-                //编码见   上位机toMCU_通信格式编码.pdf
+                //发送数据
                 String str = DistanceSendStr;
+                //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
         });
@@ -220,10 +275,15 @@ public class MODE2 extends AppCompatActivity {
         ColorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //开启串口
+                if(devfd == -1){
+                    devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+                }
+                //设置状态
                 state = 4;
-                //串口发送‘4’
-                //编码见   上位机toMCU_通信格式编码.pdf
+                //发送数据
                 String str = ColorSendStr;
+                //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
         });
@@ -232,10 +292,15 @@ public class MODE2 extends AppCompatActivity {
         SoundWaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //开启串口
+                if(devfd == -1){
+                    devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+                }
+                //设置状态
                 state = 5;
-                //串口发送‘5’
-                //编码见   上位机toMCU_通信格式编码.pdf
+                //发送数据
                 String str = SoundWaveSendStr;
+                //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
         });
@@ -244,52 +309,52 @@ public class MODE2 extends AppCompatActivity {
         ServoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //串口发送‘5’
-                //编码见   上位机toMCU_通信格式编码.pdf
+                //开启串口
+                if(devfd == -1){
+                    devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+                }
+                //设置状态
+                state = 6;
+                //发送数据
                 String str = ServoSendStr;
+                //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
         });
-
 
 
         //滑台1测试 按钮触发函数
         SlipWayButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //串口发送‘7’，
-                //编码见   上位机toMCU_通信格式编码.pdf
-                String str = SlidWaySendStr1;
+                //开启串口
+                if(devfd == -1){
+                    devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+                }
+                //设置状态
+                state = 7;
+                //发送数据
+                String str = SlipWaySendStr1;
+                //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
         });
+
         //滑台2测试 按钮触发函数
         SlipWayButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //开启串口
+                if(devfd == -1){
+                    devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+                }
+                //设置状态
+                state = 8;
+                //发送数据
+                String str = SlipWaySendStr2;
                 //串口发送
-                //编码见   上位机toMCU_通信格式编码.pdf
-                String str = SlidWaySendStr2;
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
 }

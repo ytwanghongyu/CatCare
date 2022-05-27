@@ -15,36 +15,32 @@
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:text="操作模式"
-        android:textSize="100sp"
+        android:textSize="120sp"
         android:background="#8FB8FF"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:id="@+id/feed_btn"
+        android:layout_width="600dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
 
-        <Button
-            android:id="@+id/feed_btn"
-            android:layout_width="400dp"
-            android:layout_height="200dp"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="60dp"
-            android:background="#ffb87e"
-            android:text="喂猫粮"
-            android:textSize="60sp" />
-
-        <Button
-            android:id="@+id/shit_btn"
-            android:layout_width="400dp"
-            android:layout_height="200dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="60dp"
-            android:layout_toRightOf="@+id/feed_btn"
-            android:background="#ffb87e"
-            android:text="铲猫砂"
-            android:textSize="60sp"
-
-            />
+        android:background="#ffb87e"
+        android:text="喂猫粮"
+        android:textAllCaps="false"
+        android:textSize="80sp" />
 
 
-    </RelativeLayout>
+
+    <Button
+        android:id="@+id/shit_btn"
+        android:layout_width="600dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:background="#ffb87e"
+        android:layout_gravity="center"
+        android:text="清猫砂"
+        android:textAllCaps="false"
+        android:textSize="80sp"/>
+
 </LinearLayout>

@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dp"
             android:layout_marginTop="65dp"
-            android:background="#ffb87e"
+            android:background="#8BC34A"
             android:text="距离传感器测试"
             android:textSize="50sp" />
 
@@ -37,7 +37,7 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="65dp"
             android:layout_toRightOf="@+id/distance_btn"
-            android:background="#ffb87e"
+            android:background="#8BC34A"
             android:text="超声波传感器测试"
             android:textSize="50sp" />
 
@@ -48,7 +48,7 @@
             android:layout_below="@+id/distance_btn"
             android:layout_marginLeft="200dp"
             android:layout_marginTop="80dp"
-            android:background="#ffb87e"
+            android:background="#8BC34A"
             android:text="颜色传感器测试"
             android:textSize="50sp" />
 
@@ -71,7 +71,7 @@
             android:layout_below="@+id/distance_btn"
             android:layout_marginLeft="200dp"
             android:background="#CCCCCC"
-            android:hint="dis(mm)"
+            android:hint=" 距离(mm)"
             android:textSize="40sp" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:layout_marginLeft="-400dp"
             android:layout_toRightOf="@+id/color_btn"
             android:background="#CCCCCC"
-            android:hint="R:0|G:0|B:0"
+            android:hint=" R ,G ,B (0-255)"
             android:textSize="40sp" />
 
         <TextView
@@ -92,7 +92,7 @@
             android:layout_below="@+id/soundwave_btn"
             android:layout_marginLeft="700dp"
             android:background="#CCCCCC"
-            android:hint="余量(%)"
+            android:hint=" 余量(%)"
             android:textSize="40sp" />
 
 

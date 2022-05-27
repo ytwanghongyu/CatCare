@@ -13,8 +13,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="Maintain Mode"
-        android:textSize="60dp"
+        android:text="Maintenance Mode"
+        android:textSize="100sp"
         android:background="#8fa7ff"/>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,81 +23,108 @@
         <Button
             android:id="@+id/distance_btn_e"
             android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="60dp"
-            android:background="#ffb87e"
-            android:text="distance sensor test"
-            android:textSize="40dp" />
-        <Button
-            android:id="@+id/distance_sound_btn_e"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:background="#ffb87e"
-            android:layout_marginTop="60dp"
-            android:layout_toRightOf="@+id/distance_btn_e"
-            android:layout_marginLeft="100dp"
-            android:text="ultrasonic sensor test"
-            android:textSize="40dp"
+            android:layout_height="60dp"
 
-            />
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="65dp"
+            android:background="#ffb87e"
+            android:text="DistanceSensorTest"
+            android:textAllCaps="false"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/soundwave_btn_e"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="65dp"
+            android:textAllCaps="false"
+            android:layout_toRightOf="@+id/distance_btn_e"
+            android:background="#ffb87e"
+            android:text="SoundWaveSensorTest"
+            android:textSize="35sp" />
 
         <Button
             android:id="@+id/color_btn_e"
             android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/distance_btn_e"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="80dp"
+            android:background="#ffb87e"
+            android:text="ColorSensorTest"
+            android:textAllCaps="false"
+            android:textSize="35sp" />
+
+
+        <Button
+            android:id="@+id/servo_btn_e"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="210dp"
+            android:layout_toRightOf="@+id/color_btn_e"
+            android:background="#ffb87e"
+            android:text="ServoTest"
+            android:textAllCaps="false"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/distance_txt_e"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/distance_btn_e"
             android:layout_marginLeft="200dp"
-            android:layout_marginTop="100dp"
-            android:background="#ffb87e"
-            android:text="color sensor test"
-            android:textSize="40dp" />
+            android:background="#CCCCCC"
+            android:hint="distance(mm)"
+            android:textSize="35sp" />
 
-        <Button
-            android:id="@+id/temperature_btn_e"
+        <TextView
+            android:id="@+id/color_txt_e"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/color_btn_e"
-            android:layout_marginLeft="-404dp"
-            android:layout_marginTop="-76dp"
-            android:layout_toRightOf="@+id/distance_sound_btn_e"
-            android:background="#ffb87e"
-            android:text="Temperature and humidity sensor test"
-            android:textSize="30dp" />
+            android:layout_marginLeft="-400dp"
+            android:layout_toRightOf="@+id/color_btn_e"
+            android:background="#CCCCCC"
+            android:hint="R=0, G=0, B=0"
+            android:textSize="35sp" />
 
-        <Button
-            android:id="@+id/servo_btn_1_e"
+        <TextView
+            android:id="@+id/soundwave_txt_e"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/color_btn_e"
-            android:layout_marginTop="100dp"
+            android:layout_below="@+id/soundwave_btn_e"
+            android:layout_marginLeft="700dp"
+            android:background="#CCCCCC"
+            android:hint="margin(%)"
+            android:textSize="35sp" />
+
+
+        <Button
+            android:id="@+id/slipway_btn_2_e"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/servo_btn_e"
+            android:layout_marginLeft="-400dp"
+            android:layout_marginTop="80dp"
+            android:textAllCaps="false"
+            android:layout_toRightOf="@+id/servo_btn_e"
+            android:background="#ffb87e"
+            android:text="SlipwayTest2"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/slipway_btn_1_e"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:textAllCaps="false"
+            android:layout_below="@+id/servo_btn_e"
             android:layout_marginLeft="200dp"
+            android:layout_marginTop="80dp"
             android:background="#ffb87e"
-            android:text="Servo1 test"
-            android:textSize="40dp" />
-        <Button
-            android:id="@+id/servo_btn_2_e"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/servo_btn_1_e"
-            android:layout_below="@+id/temperature_btn_e"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="100dp"
-            android:background="#ffb87e"
-            android:text="Servo2 test"
-            android:textSize="40dp" />
-
-        <Button
-            android:id="@+id/slipway_btn_e"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/servo_btn_1_e"
-            android:layout_below="@+id/temperature_btn_e"
-            android:layout_marginTop="250dp"
-            android:layout_marginLeft="100dp"
-            android:background="#ffb87e"
-            android:text="SlipWay Test"
-            android:textSize="40dp" />
+            android:text="SlipwayTest1"
+            android:textSize="35sp" />
 
     </RelativeLayout>
 </LinearLayout>

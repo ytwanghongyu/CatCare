@@ -31,7 +31,7 @@
             android:textSize="50sp" />
 
         <Button
-            android:id="@+id/distance_sound_btn"
+            android:id="@+id/soundwave_btn"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
@@ -86,13 +86,13 @@
             android:textSize="40sp" />
 
         <TextView
-            android:id="@+id/distance_sound_txt"
+            android:id="@+id/soundwave_txt"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/distance_sound_btn"
+            android:layout_below="@+id/soundwave_btn"
             android:layout_marginLeft="700dp"
             android:background="#CCCCCC"
-            android:hint="dis(mm)"
+            android:hint="余量(%)"
             android:textSize="40sp" />
 
 

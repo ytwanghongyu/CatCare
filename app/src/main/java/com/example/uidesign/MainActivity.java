@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
         if( MODE2E.instance!=null){
             MODE2E.instance.finish();
         }
+        
 
+        
         //打开串口
         //*必须在第一个界面打开，否则容易出错
         devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );

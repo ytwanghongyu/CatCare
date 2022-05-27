@@ -15,20 +15,26 @@
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:text="@string/UserModeTitle"
+
+        android:textAllCaps="false"
         android:textSize="120sp"
         android:background="#8FB8FF"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
     <Button
         android:id="@+id/feed_btn"
         android:layout_width="600dp"
         android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="30dp"
 
         android:background="#ffb87e"
         android:text="@string/FeedCat"
         android:textAllCaps="false"
-        android:textSize="80sp" />
+        android:textSize="55sp" />
 
 
 
@@ -36,11 +42,12 @@
         android:id="@+id/shit_btn"
         android:layout_width="600dp"
         android:layout_height="200dp"
-        android:layout_marginTop="50dp"
         android:background="#ffb87e"
-        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="25dp"
         android:text="@string/CleanTheLitter"
         android:textAllCaps="false"
-        android:textSize="80sp"/>
+        android:textSize="55sp"/>
 
+        </LinearLayout>
 </LinearLayout>

@@ -38,30 +38,10 @@ public class MainActivity extends AppCompatActivity {
     private Button mode1;//定义操作模式按钮
     private Button mode2;//定义维护模式按钮
 
-    //串口初始化参数（不能改
-    private String devName = "/dev/ttyAMA3";//ttyAMA3 UART3
-    private int speed = 115200;//波特率
-    private int dataBits = 8;
-    private int stopBits = 1;
-    private int devfd = -1;
-
     public static MainActivity instance = null;
 
 
-        public static void set(boolean isEnglish) {
 
-            Configuration configuration = MainActivity.instance.getResources().getConfiguration();
-            DisplayMetrics displayMetrics = MainActivity.instance.getResources().getDisplayMetrics();
-            if (isEnglish) {
-                //设置英文
-                configuration.locale = Locale.ENGLISH;
-            } else {
-                //设置中文
-                configuration.locale = Locale.SIMPLIFIED_CHINESE;
-            }
-            //更新配置
-            MainActivity.instance.getResources().updateConfiguration(configuration, displayMetrics);
-        }
 
 
     @Override
@@ -70,44 +50,41 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        Locale locale = Locale.getDefault();
+        String language = locale.getLanguage();
+
+        
         //关闭其他页面
-        if(MainActivity2.instance!=null){
-            MainActivity2.instance.finish();
-        }
+
         if( LOGIN.instance!=null){
             LOGIN.instance.finish();
-        }
-        if( LOGINE.instance!=null){
-            LOGINE.instance.finish();
         }
         if( MODE1.instance!=null){
             MODE1.instance.finish();
         }
-        if( MODE1E.instance!=null){
-            MODE1E.instance.finish();
-        }
         if( MODE2.instance!=null){
             MODE2.instance.finish();
         }
-        if( MODE2E.instance!=null){
-            MODE2E.instance.finish();
-        }
-        
 
-        
+
+
 
         //切换语言BUTTON 跳转 MainActivity2
         language1=findViewById(R.id.language1);
-        language1.setOnClickListener(new View.OnClickListener(){
+        language1.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
-                LanguageSwitch.set(true);
+                //修改配置
+                LanguageSwitch.settingLanguage(MainActivity.this,LanguageSwitch.getInstance());
+                //activity銷毀重建
+                MainActivity.this.recreate();
+
             }
         });
 
         //操作模式BUTTON 跳转mode1
         mode1=findViewById(R.id.mode1);
-        mode1.setOnClickListener(new View.OnClickListener(){
+        mode1.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MODE1.class);
@@ -117,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         //维护模式BUTTON 跳转mode2
         mode2=findViewById(R.id.mode2);
-        mode2.setOnClickListener(new View.OnClickListener(){
+        mode2.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LOGIN.class);
@@ -125,4 +102,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

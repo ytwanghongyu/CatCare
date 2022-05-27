@@ -28,7 +28,8 @@
             android:layout_marginTop="65dp"
             android:background="#8BC34A"
             android:text="@string/LaserDistanceSensorTest"
-            android:textSize="50sp" />
+            android:textAllCaps="false"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/soundwave_btn"
@@ -39,7 +40,8 @@
             android:layout_toRightOf="@+id/distance_btn"
             android:background="#8BC34A"
             android:text="@string/UltrasonicSensorTest"
-            android:textSize="50sp" />
+            android:textAllCaps="false"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/color_btn"
@@ -50,7 +52,8 @@
             android:layout_marginTop="80dp"
             android:background="#8BC34A"
             android:text="@string/RGBColorSensorTest"
-            android:textSize="50sp" />
+            android:textAllCaps="false"
+            android:textSize="30sp" />
 
 
         <Button
@@ -62,7 +65,8 @@
             android:layout_toRightOf="@+id/color_btn"
             android:background="#ffb87e"
             android:text="@string/ServoTest"
-            android:textSize="50sp" />
+            android:textAllCaps="false"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/distance_txt"
@@ -72,7 +76,8 @@
             android:layout_marginLeft="200dp"
             android:background="#CCCCCC"
             android:hint="@string/DistanceValue"
-            android:textSize="40sp" />
+            android:textAllCaps="false"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/color_txt"
@@ -83,7 +88,8 @@
             android:layout_toRightOf="@+id/color_btn"
             android:background="#CCCCCC"
             android:hint="@string/RGBValue"
-            android:textSize="40sp" />
+            android:textAllCaps="false"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/soundwave_txt"
@@ -93,7 +99,8 @@
             android:layout_marginLeft="700dp"
             android:background="#CCCCCC"
             android:hint="@string/MarginValue"
-            android:textSize="40sp" />
+            android:textAllCaps="false"
+            android:textSize="30sp" />
 
 
         <Button
@@ -106,7 +113,8 @@
             android:layout_toRightOf="@+id/servo_btn"
             android:background="#ffb87e"
             android:text="@string/SlipWayTest2"
-            android:textSize="50sp" />
+            android:textAllCaps="false"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/slipway_btn_1"
@@ -118,7 +126,8 @@
             android:layout_marginTop="80dp"
             android:background="#ffb87e"
             android:text="@string/SlipWayTest1"
-            android:textSize="50sp" />
+            android:textAllCaps="false"
+            android:textSize="30sp" />
 
 
     </RelativeLayout>

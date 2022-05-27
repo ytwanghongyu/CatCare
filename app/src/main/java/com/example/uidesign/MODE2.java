@@ -217,23 +217,11 @@ public class MODE2 extends AppCompatActivity {
         if(MainActivity.instance!=null){
             MainActivity.instance.finish();
         }
-        if(MainActivity2.instance!=null){
-            MainActivity2.instance.finish();
-        }
         if( LOGIN.instance!=null){
             LOGIN.instance.finish();
         }
-        if( LOGINE.instance!=null){
-            LOGINE.instance.finish();
-        }
         if( MODE1.instance!=null){
             MODE1.instance.finish();
-        }
-        if( MODE1E.instance!=null){
-            MODE1E.instance.finish();
-        }
-        if( MODE2E.instance!=null){
-            MODE2E.instance.finish();
         }
 
         //打开串口

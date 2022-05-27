@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CatCare</string>
+    <string name="Administrator_login">管理员登录</string>
+    <string name="Username">账号:</string>
+    <string name="Password">密码:</string>
+    <string name="SafelyLogin">安全登录</string>
+    <string name="LanguageSwitch">English</string>
+    <string name="ModeChoose">模式选择</string>
+    <string name="UserMode">用户模式</string>
+    <string name="MaintainMode">维护模式</string>
+    <string name="UserModeTitle">用户模式</string>
+    <string name="FeedCat">喂猫粮</string>
+    <string name="CleanTheLitter">清理猫砂</string>
+    <string name="MaintainModeTitle">维护模式</string>
+    <string name="LaserDistanceSensorTest">距离传感器测试</string>
+    <string name="UltrasonicSensorTest">超声波传感器测试</string>
+    <string name="RGBColorSensorTest">颜色传感器测试</string>
+    <string name="ServoTest">舵机测试</string>
+    <string name="DistanceValue">距离(mm)</string>
+    <string name="RGBValue">R ,G ,B (0_255)</string>
+    <string name="MarginValue">余量(%)</string>
+    <string name="SlipWayTest2">滑台测试2</string>
+    <string name="SlipWayTest1">滑台测试1</string>
+    <string name="SuccessfullyLogin">登录成功</string>
+    <string name="FailedLogin">登录失败</string>
+</resources>

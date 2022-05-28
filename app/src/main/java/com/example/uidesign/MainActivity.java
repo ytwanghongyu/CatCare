@@ -4,7 +4,7 @@ package com.example.uidesign;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.res.Configuration;
 import android.util.DisplayMetrics;
-
+import android.media.MediaPlayer;
 import java.util.Locale;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -79,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        //音频播放
+        MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.helptest);
+        mediaPlayer.start();
 
         //操作模式BUTTON 跳转mode1
         mode1=findViewById(R.id.mode1);

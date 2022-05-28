@@ -225,7 +225,7 @@ public class MODE2 extends AppCompatActivity {
         }
 
         //打开串口
-        devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+        devfd = HardwareControler.openSerialPort(devName,speed,dataBits,stopBits);
 
 
         DistanceButton      =findViewById(R.id.distance_btn );

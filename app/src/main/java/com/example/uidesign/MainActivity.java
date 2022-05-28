@@ -67,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
         //切换语言BUTTON 跳转 MainActivity2
         language1=findViewById(R.id.language1);
         language1.setOnClickListener(new OnClickListener(){

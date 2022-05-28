@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CatCare</string>
+    <string name="app_name">CatPlus</string>
     <string name="Administrator_login">Administrator Login</string>
     <string name="Username">Username:</string>
     <string name="Password">Password:</string>
@@ -24,4 +24,7 @@
     <string name="SlipWayTest1">SlipWayTest1</string>
     <string name="SuccessfullyLogin">Successfully Login!</string>
     <string name="FailedLogin">Failed Login</string>
+    <string name="AutoOperate">Auto Mode</string>
+    <string name="MarginInquiry">Cat Food Margin Inquiry</string>
+    <string name="VoiceStopButton">Stop or Start Voice Help</string>
 </resources>

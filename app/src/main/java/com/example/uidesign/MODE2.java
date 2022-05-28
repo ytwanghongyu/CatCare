@@ -88,15 +88,13 @@ public class MODE2 extends AppCompatActivity {
                                     String str_distance = new String(str_decode);
                                     //str_distance结尾加"mm"
                                     DistanceText.setText(str_distance+"mm");
-                                    //设置距离
-                                    DistanceText.setText(str_distance);
+                                    //设置状态
+                                    state = 0;
                                 }
                                 else{
                                     //设置距离
                                     DistanceText.setText("获取距离失败");
                                 }
-                                //设置状态
-                                state = 0;
                                 break;
                             }
                             //颜色传感器收处理 
@@ -123,15 +121,14 @@ public class MODE2 extends AppCompatActivity {
                                     //str_colorG开头加",G:"
                                     //str_colorB开头加",B:"
                                     ColorText.setText("R:"+str_colorR+",G:"+str_colorG+",B:"+str_colorB);
-                                    //设置颜色
-                                    ColorText.setText(str_colorR+" "+str_colorG+" "+str_colorB);
+                                    //状态复位
+                                    state = 0;
                                 }
                                 else{
                                     //设置颜色
                                     ColorText.setText("获取RGB失败");
                                 }
-                                //状态复位
-                                state = 0;
+
                                 break;
                             }
                             //超声波传感器收处理，the same as距离传感器收处理，but "mm" is changed to "%"
@@ -157,15 +154,14 @@ public class MODE2 extends AppCompatActivity {
                                     }
                                     //str_distance结尾加"%"
                                     SoundWaveText.setText(str_distance+"%");
-                                    //设置距离
-                                    SoundWaveText.setText(str_distance);
+
+                                    //状态复位
+                                    state = 0;
                                 }
                                 else{
                                     //设置%
                                     SoundWaveText.setText("获取失败");
                                 }
-                                //状态复位
-                                state = 0;
                                  break;
                             }
 
@@ -237,6 +233,16 @@ public class MODE2 extends AppCompatActivity {
         DistanceText        =findViewById(R.id.distance_txt );
         ColorText           =findViewById(R.id.color_txt    );
         SoundWaveText       =findViewById(R.id.soundwave_txt);
+
+        //开启计时器事件
+        if (devfd >= 0) {
+            timer.schedule(task, 0, 500);
+        } else {
+            devfd = -1;
+            Toast.makeText(MODE2.this,"Failed  to  open....",Toast.LENGTH_LONG).show();
+        }
+
+
 
         //按钮点击事件
 

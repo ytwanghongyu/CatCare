@@ -15,18 +15,18 @@
         android:gravity="center"
         android:text="@string/MaintainModeTitle"
         android:textSize="100sp"
-        android:background="#8fa7ff"/>
+        android:textColor="@color/black"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <Button
             android:id="@+id/distance_btn"
+            android:background="@drawable/test_btn_shape_1"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dp"
             android:layout_marginTop="65dp"
-            android:background="#8BC34A"
             android:text="@string/LaserDistanceSensorTest"
             android:textAllCaps="false"
             android:textSize="30sp" />
@@ -35,10 +35,10 @@
             android:id="@+id/soundwave_btn"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="102dp"
             android:layout_marginTop="65dp"
             android:layout_toRightOf="@+id/distance_btn"
-            android:background="#8BC34A"
+            android:background="@drawable/test_btn_shape_1"
             android:text="@string/UltrasonicSensorTest"
             android:textAllCaps="false"
             android:textSize="30sp" />
@@ -50,7 +50,7 @@
             android:layout_below="@+id/distance_btn"
             android:layout_marginLeft="200dp"
             android:layout_marginTop="80dp"
-            android:background="#8BC34A"
+            android:background="@drawable/test_btn_shape_1"
             android:text="@string/RGBColorSensorTest"
             android:textAllCaps="false"
             android:textSize="30sp" />
@@ -63,7 +63,7 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="210dp"
             android:layout_toRightOf="@+id/color_btn"
-            android:background="#ffb87e"
+            android:background="@drawable/test_btn_shape_2"
             android:text="@string/ServoTest"
             android:textAllCaps="false"
             android:textSize="30sp" />
@@ -111,7 +111,7 @@
             android:layout_marginLeft="-400dp"
             android:layout_marginTop="80dp"
             android:layout_toRightOf="@+id/servo_btn"
-            android:background="#ffb87e"
+            android:background="@drawable/test_btn_shape_2"
             android:text="@string/SlipWayTest2"
             android:textAllCaps="false"
             android:textSize="30sp" />
@@ -124,7 +124,7 @@
             android:layout_below="@+id/servo_btn"
             android:layout_marginLeft="200dp"
             android:layout_marginTop="80dp"
-            android:background="#ffb87e"
+            android:background="@drawable/test_btn_shape_2"
             android:text="@string/SlipWayTest1"
             android:textAllCaps="false"
             android:textSize="30sp" />

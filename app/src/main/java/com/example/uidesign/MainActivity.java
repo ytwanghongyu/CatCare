@@ -37,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
     private Button language1;//定义语言切换按钮
     private Button mode1;//定义操作模式按钮
     private Button mode2;//定义维护模式按钮
+    
 
     public static MainActivity instance = null;
 
-
+    //语音播报状态
+    int VoiceHelp = 1;
 
 
 
@@ -53,7 +55,12 @@ public class MainActivity extends AppCompatActivity {
         Locale locale = Locale.getDefault();
         String language = locale.getLanguage();
 
-        
+        //语音播报
+        if(VoiceHelp == 1){
+            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.helpen);
+            mediaPlayer.start();
+        }
+
         //关闭其他页面
 
         if( LOGIN.instance!=null){
@@ -76,12 +83,17 @@ public class MainActivity extends AppCompatActivity {
                 LanguageSwitch.settingLanguage(MainActivity.this,LanguageSwitch.getInstance());
                 //activity銷毀重建
                 MainActivity.this.recreate();
+                //如果正在播放，停止当前播放
+                if(VoiceHelp == 1){
+                    MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.helpen);
+                    mediaPlayer.stop();
+                    VoiceHelp = 0;
+                }
+                
 
             }
         });
-        //音频播放
-        MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.);
-        mediaPlayer.start();
+
 
         //操作模式BUTTON 跳转mode1
         mode1=findViewById(R.id.mode1);

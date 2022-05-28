@@ -1,6 +1,6 @@
 
 <resources>
-    <string name="app_name">CatCare</string>
+    <string name="app_name"><猫加CatPlus></猫加CatPlus></string>
     <string name="Administrator_login">管理员登录</string>
     <string name="Username">账号:</string>
     <string name="Password">密码:</string>
@@ -24,4 +24,7 @@
     <string name="SlipWayTest1">滑台测试1</string>
     <string name="SuccessfullyLogin">登录成功</string>
     <string name="FailedLogin">登录失败</string>
+    <string name="AutoOperate">自动模式</string>
+    <string name="MarginInquiry">猫粮余量查询</string>
+    <string name="VoiceStopButton">停止/开启语音播报</string>
 </resources>

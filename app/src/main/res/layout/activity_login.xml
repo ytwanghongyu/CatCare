@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:gravity="center"
+        android:textColor="@color/black"
         android:text="@string/Administrator_login"
-        android:textSize="60sp" />
+        android:textSize="100sp" />
 
     <EditText
         android:id="@+id/username"
@@ -45,9 +46,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
         android:layout_centerInParent="true"
-        android:layout_marginTop="50dp"
-        android:background="#ffb87e"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/login_btn_shape"
         android:text="@string/SafelyLogin"
-        android:textSize="40sp" />
+        android:textSize="60sp" />
 
 </RelativeLayout>

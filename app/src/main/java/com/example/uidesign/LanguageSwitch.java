@@ -15,6 +15,7 @@ public class LanguageSwitch {
     public static String settingLanguage(Context context, ThreadLocal threadLocal) {
         weakReference = new WeakReference<>(context);
         //获得res资源对象
+
         Resources resources = weakReference.get().getResources();
         //获得设置对象
         Configuration config = resources.getConfiguration();

@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //音频播放
-        MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.helptest);
+        MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.);
         mediaPlayer.start();
 
         //操作模式BUTTON 跳转mode1

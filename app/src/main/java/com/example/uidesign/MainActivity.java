@@ -88,6 +88,32 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onDestroy() {
+        task.cancel();
+        timer.cancel();
+        if(devfd!=-1) {
+            HardwareControler.close(devfd);
+            devfd=-1;
+        }
+        super.onDestroy();
+    }
+
+    public void onPause(){
+        if(devfd!=-1){
+            HardwareControler.close(devfd);
+            devfd=-1;
+        }
+        super.onPause();
+    }
+
+    public void onStop(){
+        if(devfd!=-1){
+            HardwareControler.close(devfd);
+            devfd=-1;
+        }
+        super.onStop();
+    }
 
 
 
@@ -118,11 +144,12 @@ public class MainActivity extends AppCompatActivity {
 
         // 设备是否开启判别
         if (devfd >= 0) {
-            timer.schedule(task, 0, 1000);
+            timer.schedule(task, 0, 100);
         } else {
             Toast.makeText(MainActivity.this,"Failed  to  open....",Toast.LENGTH_LONG).show();
         }
 
+        }
 
     }
-}
+

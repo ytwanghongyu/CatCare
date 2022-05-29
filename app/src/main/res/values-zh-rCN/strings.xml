@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">猫加MoreCat</string>
     <string name="AutoOperate">自动模式</string>
     <string name="MarginInquiry">猫粮余量查询</string>
     <string name="VoiceStopButton">停止/开启语音播报</string>
-    <string name="app_name">CatCare</string>
     <string name="Administrator_login">管理员登录</string>
     <string name="Username">账号:</string>
     <string name="Password">密码:</string>

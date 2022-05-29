@@ -36,7 +36,7 @@ public class MODE1 extends AppCompatActivity {
     String feed_str = "1";
     String clean_str = "2";
     String auto_str = "a";
-    String margin_str = "b";
+    String margin_str = "5";
     String auto_last_str = "z";
     String auto_stop_str = "d";
 
@@ -48,7 +48,7 @@ public class MODE1 extends AppCompatActivity {
     private final int BUFSIZE = 512;
     private byte[] buf = new byte[BUFSIZE];
     private Timer timer = new Timer();
-    private TimerTask task = new TimerTask() {
+    public TimerTask task = new TimerTask() {
         public void run() {
             Message message = new Message();
             message.what = 1;
@@ -128,7 +128,32 @@ public class MODE1 extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onDestroy() {
+        task.cancel();
+        timer.cancel();
+        if(devfd!=-1) {
+            HardwareControler.close(devfd);
+            devfd=-1;
+        }
+        super.onDestroy();
+    }
 
+    public void onPause(){
+        if(devfd!=-1){
+            HardwareControler.close(devfd);
+            devfd=-1;
+        }
+        super.onPause();
+    }
+
+    public void onStop(){
+        if(devfd!=-1){
+            HardwareControler.close(devfd);
+            devfd=-1;
+        }
+        super.onStop();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,15 +179,6 @@ public class MODE1 extends AppCompatActivity {
 
         if( MainActivity.InstanceMain!=null){
             MainActivity.InstanceMain.finish();
-        }
-        if( LOGIN.InstanceLogin!=null){
-            LOGIN.InstanceLogin.finish();
-        }
-        if( ModeChoose.InstanceModeChoose!=null){
-            ModeChoose.InstanceModeChoose.finish();
-        }
-        if( MODE2.InstanceMode2!=null){
-            MODE2.InstanceMode2.finish();
         }
         //喂食按钮触发函数
         FeedButton.setOnClickListener(new View.OnClickListener() {

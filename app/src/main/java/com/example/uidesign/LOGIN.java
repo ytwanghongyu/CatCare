@@ -27,15 +27,7 @@ public class LOGIN extends AppCompatActivity {
         if( MainActivity.InstanceMain!=null){
             MainActivity.InstanceMain.finish();
         }
-        if( MODE1.InstanceMode1!=null){
-            MODE1.InstanceMode1.finish();
-        }
-        if( ModeChoose.InstanceModeChoose!=null){
-            ModeChoose.InstanceModeChoose.finish();
-        }
-        if( MODE2.InstanceMode2!=null){
-            MODE2.InstanceMode2.finish();
-        }
+
 
         login=findViewById(R.id.login);
 

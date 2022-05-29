@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CatPlus</string>
+    <string name="app_name">猫加MoreCat</string>
     <string name="Administrator_login">Administrator Login</string>
     <string name="Username">Username:</string>
     <string name="Password">Password:</string>

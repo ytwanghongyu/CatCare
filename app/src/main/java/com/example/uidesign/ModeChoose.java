@@ -55,23 +55,14 @@ public class ModeChoose extends AppCompatActivity {
 
         Locale locale = Locale.getDefault();
         String language = locale.getLanguage();
-
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.helpen);
         //语音播报
         if(VoiceHelp == 1){
-            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.helpen);
+
             mediaPlayer.start();
         }
         if( MainActivity.InstanceMain!=null){
             MainActivity.InstanceMain.finish();
-        }
-        if( LOGIN.InstanceLogin!=null){
-            LOGIN.InstanceLogin.finish();
-        }
-        if( MODE1.InstanceMode1!=null){
-            MODE1.InstanceMode1.finish();
-        }
-        if( MODE2.InstanceMode2!=null){
-            MODE2.InstanceMode2.finish();
         }
 
 
@@ -88,7 +79,6 @@ public class ModeChoose extends AppCompatActivity {
                 ModeChoose.this.recreate();
                 //如果正在播放，停止当前播放
                 if(VoiceHelp == 1){
-                    MediaPlayer mediaPlayer = MediaPlayer.create(ModeChoose.this, R.raw.helpen);
                     mediaPlayer.stop();
                     VoiceHelp = 0;
                 }

@@ -39,7 +39,7 @@ public class ModeChoose extends AppCompatActivity {
     private Button mode2;//定义维护模式按钮
 
 
-    public static ModeChoose instance = null;
+    public static ModeChoose InstanceModeChoose = null;
 
     //语音播报状态
     int VoiceHelp = 1;
@@ -51,6 +51,7 @@ public class ModeChoose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_modechoose);
+        InstanceModeChoose = this;
 
         Locale locale = Locale.getDefault();
         String language = locale.getLanguage();
@@ -60,18 +61,19 @@ public class ModeChoose extends AppCompatActivity {
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.helpen);
             mediaPlayer.start();
         }
+        if( MainActivity.InstanceMain!=null){
+            MainActivity.InstanceMain.finish();
+        }
+        if( LOGIN.InstanceLogin!=null){
+            LOGIN.InstanceLogin.finish();
+        }
+        if( MODE1.InstanceMode1!=null){
+            MODE1.InstanceMode1.finish();
+        }
+        if( MODE2.InstanceMode2!=null){
+            MODE2.InstanceMode2.finish();
+        }
 
-        //关闭其他页面
-       // MainActivity.instance.finish();
-        if( LOGIN.instance!=null){
-            LOGIN.instance.finish();
-        }
-        if( MODE1.instance!=null){
-            MODE1.instance.finish();
-        }
-        if( MODE2.instance!=null){
-            MODE2.instance.finish();
-        }
 
 
 

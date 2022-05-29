@@ -1,6 +1,6 @@
 
 <resources>
-    <string name="app_name"><猫加CatPlus></猫加CatPlus></string>
+    <string name="app_name">猫加CatPlus</string>
     <string name="Administrator_login">管理员登录</string>
     <string name="Username">账号:</string>
     <string name="Password">密码:</string>

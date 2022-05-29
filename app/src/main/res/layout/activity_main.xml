@@ -35,7 +35,7 @@
         android:id="@+id/access_txt_zh"
         android:layout_width="10000dp"
         android:layout_height="150dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="60dp"
         android:textAllCaps="false"
         android:gravity="center"
         android:background="#8BC34A"
@@ -57,17 +57,6 @@
         android:text="@string/AccessEN"
         android:textSize="60sp"
         />
-    <Button
-        android:id="@+id/enter_btn"
-        android:background="@drawable/mode_btn_shape"
-        android:layout_width="600dp"
-        android:layout_height="250dp"
-        android:textAllCaps="false"
-        android:text="@string/UserMode"
-        android:textSize="55sp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="30dp" />
-
 
 
 

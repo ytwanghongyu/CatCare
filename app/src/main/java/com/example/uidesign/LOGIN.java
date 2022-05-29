@@ -14,27 +14,29 @@ import android.widget.Toast;
 
 public class LOGIN extends AppCompatActivity {
     private Button login;//定义登录按钮
-    public static LOGIN instance = null;
+    public static LOGIN InstanceLogin = null;
     EditText name;  //创建账号
     EditText passwd;  //创建密码
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //关闭其他页面
-        if(MainActivity.instance!=null){
-            MainActivity.instance.finish();
+
+        InstanceLogin = this;
+
+        if( MainActivity.InstanceMain!=null){
+            MainActivity.InstanceMain.finish();
         }
-        if( MODE1.instance!=null){
-            MODE1.instance.finish();
+        if( MODE1.InstanceMode1!=null){
+            MODE1.InstanceMode1.finish();
         }
-        if( MODE2.instance!=null){
-            MODE2.instance.finish();
+        if( ModeChoose.InstanceModeChoose!=null){
+            ModeChoose.InstanceModeChoose.finish();
+        }
+        if( MODE2.InstanceMode2!=null){
+            MODE2.InstanceMode2.finish();
         }
 
-        if( ModeChoose.instance!=null){
-            ModeChoose.instance.finish();
-        }
         login=findViewById(R.id.login);
 
         name = findViewById(R.id.username);         //获取输入的账号

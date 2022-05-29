@@ -33,8 +33,9 @@ public class MODE2 extends AppCompatActivity {
     private int dataBits = 8    ;//数据位
     private int stopBits = 1    ;//停止位
     private int devfd = -1      ;//串口句柄
-    
-    public static MODE2 instance = null;
+
+
+    public static MODE2 InstanceMode2 = null;
 
     
     private  int state = 0;//待机状态
@@ -55,6 +56,10 @@ public class MODE2 extends AppCompatActivity {
             Message message = new Message();
             message.what = 1;
             handler.sendMessage(message);
+            //开启串口
+            if(devfd == -1){
+                devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+            }
         }
     };
     //计时器里的处理函数
@@ -208,18 +213,27 @@ public class MODE2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode2);
         //关闭其他页面
-        if(MainActivity.instance!=null){
-            MainActivity.instance.finish();
+        InstanceMode2 = this;
+
+        MainActivity.InstanceMain.finish();
+        LOGIN.InstanceLogin.finish();
+        MODE1.InstanceMode1.finish();
+        //MODE2.InstanceMode2.finish();
+        ModeChoose.InstanceModeChoose.finish();
+
+
+        if( MainActivity.InstanceMain!=null){
+            MainActivity.InstanceMain.finish();
         }
-        if( LOGIN.instance!=null){
-            LOGIN.instance.finish();
+        if( LOGIN.InstanceLogin!=null){
+            LOGIN.InstanceLogin.finish();
         }
-        if( MODE1.instance!=null){
-            MODE1.instance.finish();
+        if( MODE1.InstanceMode1!=null){
+            MODE1.InstanceMode1.finish();
         }
 
-        if( ModeChoose.instance!=null){
-            ModeChoose.instance.finish();
+        if( ModeChoose.InstanceModeChoose!=null){
+            ModeChoose.InstanceModeChoose.finish();
         }
 
         //打开串口
@@ -266,6 +280,9 @@ public class MODE2 extends AppCompatActivity {
                 }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
+                //关闭串口
+                HardwareControler.close(devfd);
+                devfd = -1;
             }
         });
 
@@ -289,6 +306,9 @@ public class MODE2 extends AppCompatActivity {
                 }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
+                //关闭串口
+                HardwareControler.close(devfd);
+                devfd = -1;
             }
         });
 
@@ -310,6 +330,9 @@ public class MODE2 extends AppCompatActivity {
                 }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
+                //关闭串口
+                HardwareControler.close(devfd);
+                devfd = -1;
             }
         });
 
@@ -331,6 +354,9 @@ public class MODE2 extends AppCompatActivity {
                 }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
+                //关闭串口
+                HardwareControler.close(devfd);
+                devfd = -1;
             }
         });
 
@@ -353,6 +379,9 @@ public class MODE2 extends AppCompatActivity {
                 }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
+                //关闭串口
+                HardwareControler.close(devfd);
+                devfd = -1;
             }
         });
 
@@ -374,6 +403,9 @@ public class MODE2 extends AppCompatActivity {
                 }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
+                //关闭串口
+                HardwareControler.close(devfd);
+                devfd = -1;
             }
         });
     }

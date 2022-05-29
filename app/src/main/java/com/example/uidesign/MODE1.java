@@ -18,7 +18,7 @@ import java.util.TimerTask;
 
 
 public class MODE1 extends AppCompatActivity {
-    
+    public static MainActivity instance ;
     //按钮声明
     private Button FeedButton;
     private Button ShitButton;
@@ -31,7 +31,7 @@ public class MODE1 extends AppCompatActivity {
     private int dataBits = 8;
     private int stopBits = 1;
     private int devfd = -1;
-    public static MODE1 instance = null;
+    public static MODE1 InstanceMode1 = null;
 
     String feed_str = "1";
     String clean_str = "2";
@@ -56,10 +56,8 @@ public class MODE1 extends AppCompatActivity {
 
             //如果是自动模式，开启串口并发送“z”
             if(state==1){
-                if(devfd==-1){
+
                     devfd = HardwareControler.openSerialPort(devName, speed, dataBits, stopBits);
-                }
-                if(devfd!=-1){
                     //发送数据
                     String str = auto_last_str;
                     //如果str结尾没有\n，则加上
@@ -68,7 +66,7 @@ public class MODE1 extends AppCompatActivity {
                     }
                     //串口发送
                     com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
-                }
+
             }
 
 
@@ -114,9 +112,6 @@ public class MODE1 extends AppCompatActivity {
                                     }
                                     //str_distance结尾加"%"
                                     MarginText.setText(str_distance+"%");
-
-                                    //状态复位
-                                    state = 0;
                                 }
                                 else{
                                     //设置%
@@ -139,8 +134,15 @@ public class MODE1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode1);
-
-
+        InstanceMode1 = this;
+        devfd = HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+        //开启计时器事件
+        if (devfd >= 0) {
+            timer.schedule(task, 0, 500);
+        } else {
+            devfd = -1;
+            Toast.makeText(MODE1.this,"Failed  to  open....",Toast.LENGTH_LONG).show();
+        }
 
         //按钮初始化
         FeedButton = (Button) findViewById(R.id.feed_btn);
@@ -149,19 +151,18 @@ public class MODE1 extends AppCompatActivity {
         MarginInquiryButton = (Button) findViewById(R.id.margin_inquiry_btn);
         MarginText = findViewById(R.id.margin_txt);
 
-        //关闭其他页面
-        if(MainActivity.instance!=null){
-            MainActivity.instance.finish();
-        }
-        if( LOGIN.instance!=null){
-            LOGIN.instance.finish();
-        }
-        if( MODE2.instance!=null){
-            MODE2.instance.finish();
-        }
 
-        if( ModeChoose.instance!=null){
-            ModeChoose.instance.finish();
+        if( MainActivity.InstanceMain!=null){
+            MainActivity.InstanceMain.finish();
+        }
+        if( LOGIN.InstanceLogin!=null){
+            LOGIN.InstanceLogin.finish();
+        }
+        if( ModeChoose.InstanceModeChoose!=null){
+            ModeChoose.InstanceModeChoose.finish();
+        }
+        if( MODE2.InstanceMode2!=null){
+            MODE2.InstanceMode2.finish();
         }
         //喂食按钮触发函数
         FeedButton.setOnClickListener(new View.OnClickListener() {
@@ -224,6 +225,8 @@ public class MODE1 extends AppCompatActivity {
                     //更改状态
                     state = 1;
                 }
+
+
                 
                 
                 //如果状态是自动模式，则转换为手动模式

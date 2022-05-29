@@ -2,40 +2,20 @@
 package com.example.uidesign;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.res.Configuration;
-import android.util.DisplayMetrics;
-import android.media.MediaPlayer;
-import java.util.Locale;
 
 import android.os.Handler;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.util.Log;
-import android.text.Html;
 import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 import com.friendlyarm.FriendlyThings.HardwareControler;
-import com.friendlyarm.FriendlyThings.BoardType;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
-import android.content.Context;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static MainActivity instance ;
+    public static MainActivity InstanceMain;
 
     private String devName = "/dev/ttyAMA3";//串口地址 ttyAMA3 UART3
     private int speed = 115200  ;//波特率
@@ -43,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
     private int stopBits = 1    ;//停止位
     private int devfd = -1      ;//串口句柄
 
-    private Button EnterButton;
 
 
     String  init_str  = "b" ;//初始化发送的字符串
     String  success_init_str = "c";//初始化成功响应字符串
+    int open=0;
 
     private final int BUFSIZE = 512;
     private byte[] buf = new byte[BUFSIZE];
@@ -57,6 +37,20 @@ public class MainActivity extends AppCompatActivity {
             Message message = new Message();
             message.what = 1;
             handler.sendMessage(message);
+            //串口开启
+            devfd = com.friendlyarm.FriendlyThings.HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+
+            //向MCU发送初始化请求
+            if(open==0){
+                //补换行符\n
+                String str = init_str;
+                if (str.charAt(str.length()-1) != '\n') {
+                    str = str + "\n";
+                }
+                //串口写b 详见编码.pdf
+                HardwareControler.write(devfd, str.getBytes());
+            }
+
         }
     };
     //计时器里的处理函数
@@ -73,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                             if( str1.equals("5")){
                                 Toast.makeText( MainActivity.this,"已进入工作范围，请操作", Toast.LENGTH_SHORT).show();
                                 //向MCU发送初始化成功响应
+                                open = 1;
                                 //补换行符\n
                                 String str = success_init_str;
                                 if (str.charAt(str.length()-1) != '\n') {
@@ -102,40 +97,31 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        instance = this;
-        EnterButton = findViewById(R.id.enter_btn);
+        InstanceMain = this;
 
-
-        //向MCU发送初始化请求
-        //串口开启
-        devfd = com.friendlyarm.FriendlyThings.HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
-        //补换行符\n
-        String str = init_str;
-        if (str.charAt(str.length()-1) != '\n') {
-            str = str + "\n";
+        if( LOGIN.InstanceLogin!=null){
+            LOGIN.InstanceLogin.finish();
         }
-        //串口写b 详见编码.pdf
-        HardwareControler.write(devfd, str.getBytes());
+        if( MODE1.InstanceMode1!=null){
+            MODE1.InstanceMode1.finish();
+        }
+        if( ModeChoose.InstanceModeChoose!=null){
+            ModeChoose.InstanceModeChoose.finish();
+        }
+        if( MODE2.InstanceMode2!=null){
+            MODE2.InstanceMode2.finish();
+        }
+
+        //打开串口
+        devfd = HardwareControler.openSerialPort(devName,speed,dataBits,stopBits);
 
 
         // 设备是否开启判别
         if (devfd >= 0) {
             timer.schedule(task, 0, 1000);
         } else {
-            devfd = -1;
             Toast.makeText(MainActivity.this,"Failed  to  open....",Toast.LENGTH_LONG).show();
         }
-
-//铲屎按钮触发函数
-        EnterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //页面跳转
-                Intent intent = new Intent(MainActivity.this, ModeChoose.class);
-                startActivity(intent);
-            }
-        });
-
 
 
     }

@@ -31,6 +31,10 @@ public class LOGIN extends AppCompatActivity {
         if( MODE2.instance!=null){
             MODE2.instance.finish();
         }
+
+        if( ModeChoose.instance!=null){
+            ModeChoose.instance.finish();
+        }
         login=findViewById(R.id.login);
 
         name = findViewById(R.id.username);         //获取输入的账号

@@ -25,6 +25,11 @@
     <string name="SuccessfullyLogin">登录成功</string>
     <string name="FailedLogin">登录失败</string>
     <string name="AutoOperate">自动模式</string>
+    <string name="ManualOperate">取消自动模式</string>
     <string name="MarginInquiry">猫粮余量查询</string>
     <string name="VoiceStopButton">停止/开启语音播报</string>
+    <string name="WelcomeZH">欢迎使用猫加</string>
+    <string name="WelcomeEN">Welcome to MoreCat</string>
+    <string name="AccessZH">请靠近至10cm内</string>
+    <string name="AccessEN">Please Approach within 10cm</string>
 </resources>

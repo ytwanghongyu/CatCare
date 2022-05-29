@@ -40,12 +40,12 @@ public class MODE2 extends AppCompatActivity {
     private  int state = 0;//待机状态
 
     //串口发送的字符串
-    String  DistanceSendStr     = "3\n";//距离传感器测试发送的字符串
-    String  ColorSendStr        = "4\n";//颜色传感器测试发送的字符串
-    String  SoundWaveSendStr    = "5\n";//超声波传感器测试发送的字符串
-    String  ServoSendStr        = "6\n";//舵机测试发送的字符串
-    String  SlipWaySendStr1     = "7\n";//滑台1测试发送的字符串
-    String  SlipWaySendStr2     = "8\n";//滑台2测试发送的字符串
+    String  DistanceSendStr     = "3";//距离传感器测试发送的字符串
+    String  ColorSendStr        = "4";//颜色传感器测试发送的字符串
+    String  SoundWaveSendStr    = "5";//超声波传感器测试发送的字符串
+    String  ServoSendStr        = "6";//舵机测试发送的字符串
+    String  SlipWaySendStr1     = "7";//滑台1测试发送的字符串
+    String  SlipWaySendStr2     = "8";//滑台2测试发送的字符串
 
     private final int BUFSIZE = 512;
     private byte[] buf = new byte[BUFSIZE];
@@ -66,8 +66,6 @@ public class MODE2 extends AppCompatActivity {
                         int retSize = HardwareControler.read(devfd, buf, BUFSIZE);    //读取数据；要读取的数据都是返回值，一般返回值都是函数运行结果的状态
                         
                         if (retSize > 0) {
-                            String str1 = new String(buf, 0, retSize);
-                            
                             //待机状态
                             if(state == 0){
                                 break;
@@ -220,6 +218,10 @@ public class MODE2 extends AppCompatActivity {
             MODE1.instance.finish();
         }
 
+        if( ModeChoose.instance!=null){
+            ModeChoose.instance.finish();
+        }
+
         //打开串口
         devfd = HardwareControler.openSerialPort(devName,speed,dataBits,stopBits);
 
@@ -258,6 +260,10 @@ public class MODE2 extends AppCompatActivity {
                 state = 3;
                 //发送数据
                 String str = DistanceSendStr;
+                //如果str结尾没有\n，则加上
+                if(str.charAt(str.length()-1) != '\n'){
+                    str += "\n";
+                }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
@@ -277,6 +283,10 @@ public class MODE2 extends AppCompatActivity {
                 state = 4;
                 //发送数据
                 String str = ColorSendStr;
+                //如果str结尾没有\n，则加上
+                if(str.charAt(str.length()-1) != '\n'){
+                    str += "\n";
+                }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
@@ -294,6 +304,10 @@ public class MODE2 extends AppCompatActivity {
                 state = 5;
                 //发送数据
                 String str = SoundWaveSendStr;
+                //如果str结尾没有\n，则加上
+                if(str.charAt(str.length()-1) != '\n'){
+                    str += "\n";
+                }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
@@ -311,6 +325,10 @@ public class MODE2 extends AppCompatActivity {
                 state = 6;
                 //发送数据
                 String str = ServoSendStr;
+                //如果str结尾没有\n，则加上
+                if(str.charAt(str.length()-1) != '\n'){
+                    str += "\n";
+                }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
@@ -329,6 +347,10 @@ public class MODE2 extends AppCompatActivity {
                 state = 7;
                 //发送数据
                 String str = SlipWaySendStr1;
+                //如果str结尾没有\n，则加上
+                if(str.charAt(str.length()-1) != '\n'){
+                    str += "\n";
+                }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }
@@ -346,6 +368,10 @@ public class MODE2 extends AppCompatActivity {
                 state = 8;
                 //发送数据
                 String str = SlipWaySendStr2;
+                //如果str结尾没有\n，则加上
+                if(str.charAt(str.length()-1) != '\n'){
+                    str += "\n";
+                }
                 //串口发送
                 com.friendlyarm.FriendlyThings.HardwareControler.write(devfd, str.getBytes());
             }

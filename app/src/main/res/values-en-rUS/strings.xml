@@ -25,6 +25,11 @@
     <string name="SuccessfullyLogin">Successfully Login!</string>
     <string name="FailedLogin">Failed Login</string>
     <string name="AutoOperate">Auto Mode</string>
+    <string name="ManualOperate">Cancel Manual Mode</string>
     <string name="MarginInquiry">Cat Food Margin Inquiry</string>
     <string name="VoiceStopButton">Stop or Start Voice Help</string>
+    <string name="WelcomeZH">Welcome to MoreCat</string>
+    <string name="WelcomeEN">欢迎使用猫加</string>
+    <string name="AccessZH">Please Approach within 10cm</string>
+    <string name="AccessEN">请靠近至10cm内</string>
 </resources>

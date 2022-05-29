@@ -6,6 +6,8 @@ import android.content.res.Configuration;
 import android.util.DisplayMetrics;
 import android.media.MediaPlayer;
 import java.util.Locale;
+
+import android.os.Handler;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -33,16 +35,64 @@ import android.content.Context;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "SerialPort";
-    private Button language1;//定义语言切换按钮
-    private Button mode1;//定义操作模式按钮
-    private Button mode2;//定义维护模式按钮
-    
+    public static MainActivity instance ;
 
-    public static MainActivity instance = null;
+    private String devName = "/dev/ttyAMA3";//串口地址 ttyAMA3 UART3
+    private int speed = 115200  ;//波特率
+    private int dataBits = 8    ;//数据位
+    private int stopBits = 1    ;//停止位
+    private int devfd = -1      ;//串口句柄
 
-    //语音播报状态
-    int VoiceHelp = 1;
+    private Button EnterButton;
+
+
+    String  init_str  = "b" ;//初始化发送的字符串
+    String  success_init_str = "c";//初始化成功响应字符串
+
+    private final int BUFSIZE = 512;
+    private byte[] buf = new byte[BUFSIZE];
+    private Timer timer = new Timer();
+    private TimerTask task = new TimerTask() {
+        public void run() {
+            Message message = new Message();
+            message.what = 1;
+            handler.sendMessage(message);
+        }
+    };
+    //计时器里的处理函数
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    if (HardwareControler.select(devfd, 0, 0) == 1) {       //判断是否有数据可读
+                        int retSize = HardwareControler.read(devfd, buf, BUFSIZE);    //读取数据；要读取的数据都是返回值，一般返回值都是函数运行结果的状态
+
+                        if (retSize > 0) {
+                            String str1 = new String(buf, 0, retSize);
+                            //在这写收到的判断
+                            if( str1.equals("5")){
+                                Toast.makeText( MainActivity.this,"已进入工作范围，请操作", Toast.LENGTH_SHORT).show();
+                                //向MCU发送初始化成功响应
+                                //补换行符\n
+                                String str = success_init_str;
+                                if (str.charAt(str.length()-1) != '\n') {
+                                    str = str + "\n";
+                                }
+                                //串口写c 详见编码.pdf
+                                HardwareControler.write(devfd, str.getBytes());
+                                //页面跳转
+                                Intent intent = new Intent(MainActivity.this, ModeChoose.class);
+                                startActivity(intent);
+
+                            }
+                        }
+                    }
+                    break;
+            }
+            super.handleMessage(msg); // 帮助处理信息的一个类
+        }
+    };
+
 
 
 
@@ -52,69 +102,41 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Locale locale = Locale.getDefault();
-        String language = locale.getLanguage();
+        instance = this;
+        EnterButton = findViewById(R.id.enter_btn);
 
-        //语音播报
-        if(VoiceHelp == 1){
-            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.helpen);
-            mediaPlayer.start();
+
+        //向MCU发送初始化请求
+        //串口开启
+        devfd = com.friendlyarm.FriendlyThings.HardwareControler.openSerialPort( devName, speed, dataBits, stopBits );
+        //补换行符\n
+        String str = init_str;
+        if (str.charAt(str.length()-1) != '\n') {
+            str = str + "\n";
+        }
+        //串口写b 详见编码.pdf
+        HardwareControler.write(devfd, str.getBytes());
+
+
+        // 设备是否开启判别
+        if (devfd >= 0) {
+            timer.schedule(task, 0, 1000);
+        } else {
+            devfd = -1;
+            Toast.makeText(MainActivity.this,"Failed  to  open....",Toast.LENGTH_LONG).show();
         }
 
-        //关闭其他页面
-
-        if( LOGIN.instance!=null){
-            LOGIN.instance.finish();
-        }
-        if( MODE1.instance!=null){
-            MODE1.instance.finish();
-        }
-        if( MODE2.instance!=null){
-            MODE2.instance.finish();
-        }
-
-
-        //切换语言BUTTON 跳转 MainActivity2
-        language1=findViewById(R.id.language1);
-        language1.setOnClickListener(new OnClickListener(){
+//铲屎按钮触发函数
+        EnterButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //修改配置
-                LanguageSwitch.settingLanguage(MainActivity.this,LanguageSwitch.getInstance());
-                //activity銷毀重建
-                MainActivity.this.recreate();
-                //如果正在播放，停止当前播放
-                if(VoiceHelp == 1){
-                    MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.helpen);
-                    mediaPlayer.stop();
-                    VoiceHelp = 0;
-                }
-                
-
-            }
-        });
-
-
-        //操作模式BUTTON 跳转mode1
-        mode1=findViewById(R.id.mode1);
-        mode1.setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MODE1.class);
+            public void onClick(View view) {
+                //页面跳转
+                Intent intent = new Intent(MainActivity.this, ModeChoose.class);
                 startActivity(intent);
             }
         });
 
-        //维护模式BUTTON 跳转mode2
-        mode2=findViewById(R.id.mode2);
-        mode2.setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LOGIN.class);
-                startActivity(intent);
-            }
-        });
+
+
     }
-
-
 }

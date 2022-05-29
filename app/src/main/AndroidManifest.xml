@@ -16,6 +16,9 @@
             android:name=".MODE2"
             android:exported="false" />
         <activity
+            android:name=".ModeChoose"
+            android:exported="false" />
+        <activity
             android:name=".LOGIN"
             android:exported="false" />
         <activity

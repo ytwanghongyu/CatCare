@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/bg"
+android:orientation="vertical"
+tools:context=".ModeChoose">
+
+<Button
+    android:id="@+id/language1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#ffb87e"
+    android:text="@string/LanguageSwitch"
+    android:textAllCaps="false"
+    android:textSize="40sp" />
+<TextView
+    android:id="@+id/textView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:textAllCaps="false"
+    android:layout_gravity="center"
+    android:textColor="@color/black"
+    android:text="@string/ModeChoose"
+    android:textSize="100sp"
+    />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <Button
+        android:id="@+id/mode1"
+        android:background="@drawable/mode_btn_shape"
+        android:layout_width="600dp"
+        android:layout_height="250dp"
+        android:textAllCaps="false"
+        android:text="@string/UserMode"
+        android:textSize="55sp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp" />
+
+    <Button
+        android:id="@+id/mode2"
+        android:layout_width="600dp"
+        android:textAllCaps="false"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="25dp"
+        android:background="@drawable/mode_btn_shape"
+        android:text="@string/MaintainMode"
+        android:textSize="55sp" />
+
+
+
+
+
+</LinearLayout>
+
+</LinearLayout>
